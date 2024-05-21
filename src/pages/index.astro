@@ -118,8 +118,7 @@ background-image: var(--gradient-5);
 }
 
 /* Tilt Neon Font Styles */
-.tilt-neon-font {
-    font-family: Tilt Neon, sans-serif;
+font-family: Tilt Neon, sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     max-width: 100vw;
@@ -127,19 +126,19 @@ background-image: var(--gradient-5);
     overflow: hidden;
     word-wrap: break-word;
     text-wrap: wrap;
-    letter-spacing: -0.25ch;
+    letter-spacing: -.25ch;
     word-break: break-all;
+    background-blend-mode: darken;
     font-size: 20rem;
     font-style: normal;
-    /* font-size: clamp(3rem,8vw,175px); */
     background: var(--gradient-15);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: flex;
+    -webkit-text-fill-color: #6e0e0e;
+    background-blend-mode: darken;
     flex-wrap: wrap;
+    mix-blend-mode: difference;
     flex-direction: row;
 }
-
 .tilt-neon-letter {
   display: inline-block;
   font-variation-settings:
@@ -203,8 +202,27 @@ Hyper-Meta-Modern; Embrace everything.
 </article>
 <footer></footer>
 <script>
+function getRandomColor() {
+  color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+  return color;
+}
  function getRandomInRange(min, max) {
     return Math.random() * (max - min) + min;
+  }
+function getRandomTransform() {
+    const transforms = [
+      `rotate(${getRandomInRange(-360, 360)}deg)`,
+      `rotateX(${getRandomInRange(-360, 360)}deg)`,
+      `rotateY(${getRandomInRange(-360, 360)}deg)`,
+      `scale(${getRandomInRange(0.8, 1.2)})`,
+      `scaleX(${getRandomInRange(0.8, 1.2)})`,
+      `scaleY(${getRandomInRange(0.8, 1.2)})`,
+      `skew(${getRandomInRange(-30, 30)}deg, ${getRandomInRange(-30, 30)}deg)`,
+      `perspective(${getRandomInRange(300, 800)}px) rotateX(${getRandomInRange(-360, 360)}deg)`,
+      `perspective(${getRandomInRange(300, 800)}px) rotateY(${getRandomInRange(-360, 360)}deg)`,
+      `matrix(${getRandomInRange(-1, 1)}, ${getRandomInRange(-1, 1)}, ${getRandomInRange(-1, 1)}, ${getRandomInRange(-1, 1)}, ${getRandomInRange(-50, 50)}, ${getRandomInRange(-50, 50)})`,
+    ];
+    return transforms[Math.floor(Math.random() * transforms.length)];
   }
 document.addEventListener('DOMContentLoaded', () => {
  const gradients = [
@@ -232,8 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const span = document.createElement('span');
     span.textContent = char;
     span.classList.add('tilt-neon-letter');
-    
-
+     span.style.transform = getRandomTransform();
+ span.style.webkitTextFillColor = getRandomColor();
   span.style.animationDelay = `${index * 0.5}s`;
     span.style.animationDuration = `${10 + index}s`;
         span.style.backgroundImage = gradients[index % gradients.length];
