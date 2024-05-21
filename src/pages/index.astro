@@ -67,14 +67,79 @@ header.hero-section {
   font-weight: 400;
   font-style: normal;
 }
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Mulish", sans-serif;
+}
 
+header.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--gradient-1);
+  text-align: center;
+}
+
+/* Tilt Neon Font Styles */
+.tilt-neon-font {
+  font-family: "Tilt Neon", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(3rem, 8vw, 10rem);
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.tilt-neon-letter {
+  display: inline-block;
+  font-variation-settings:
+    "XROT" 0,
+    "YROT" 0;
+  animation: rotate-y 5s infinite linear;
+}
+
+/* Mulish Font */
+.mulish-font {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Variables for Open Props gradients */
+:root {
+  --gradient-1: linear-gradient(135deg, #ff8a00, #e52e71);
+  --gradient-2: linear-gradient(45deg, #43cea2, #185a9d);
+}
+
+/* Keyframes for Y-axis rotation */
+@keyframes rotate-y {
+  0% {
+    font-variation-settings: "YROT" 0;
+  }
+  100% {
+    font-variation-settings: "YROT" 360;
+  }
+}
+
+body {
+ padding: var(--size-10);
+ display: flex;
+flex-direction:column;  gap: var(--size-5);
+}
 
 </style>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Hello</title>
+		<title>Accelerated</title>
 	</head>
 	<body>
 		<header class="hero-section">
@@ -124,20 +189,23 @@ svg text {
 </div>
 </article>
 <footer></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const heroTitle = document.querySelector('.hhh');
+  const text = heroTitle.textContent;
+  heroTitle.innerHTML = '';
 
-<script>document.addEventListener('DOMContentLoaded', () => {
-  const heroTitle = document.querySelector('.hero-title');
-  let xRot = 0;
-  let yRot = 0;
-
-  function updateFontVariation() {
-    xRot = (xRot + 1) % 360;
-    yRot = (yRot + 1) % 360;
-    heroTitle.style.fontVariationSettings = `"XROT" ${xRot}, "YROT" ${yRot}`;
-    requestAnimationFrame(updateFontVariation);
-  }
-
-  updateFontVariation();
-}); </script>
+  // Split text into spans
+  text.split('').forEach((char, index) => {
+    const span = document.createElement('span');
+    span.textContent = char;
+    span.classList.add('tilt-neon-letter');
+    
+    // Apply different rotations
+    span.style.animationDelay = `${index * 0.1}s`;
+    
+    heroTitle.appendChild(span);
+  });
+});</script>
 	</body>
 </html>
