@@ -41,6 +41,8 @@ svg text {
 
 body, html {
   font-family: "Mulish", sans-serif;
+	background-image: var(--gradient-8);
+color:white;
 }
 h1,h2,h3,h4,h5,h6{ font-family: "Tilt Neon", sans-serif;}
   body {
@@ -54,7 +56,7 @@ header.hero-section {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: var(--gradient-1);
+  background: var(--gradient-16);
   text-align: center;
 }
 
@@ -64,8 +66,8 @@ header.hero-section {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(3rem, 8vw, 10rem);
-  background: var(--gradient-2);
+  font-size: clamp(3rem, 20vw, 30rem);
+ 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-variation-settings:
@@ -126,10 +128,12 @@ header.hero-section {
 }
 
 /* Variables for Open Props gradients */
-:root {
-  --gradient-1: linear-gradient(135deg, #ff8a00, #e52e71);
-  --gradient-2: linear-gradient(45deg, #43cea2, #185a9d);
+.gb {
+background-image: var(--gradient-5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 /* Keyframes for Y-axis rotation */
 @keyframes rotate-y {
